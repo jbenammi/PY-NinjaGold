@@ -1,0 +1,65 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+ 	<meta charset="UTF-8">
+ 	<meta name="author" content="Jonathan Ben-Ammi">
+ 	<title>Ninja Gold PLUS</title>
+ 	<meta name="description" content="This is a Python assignment for Coding Dojo">
+ 	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+
+ </head>
+ <body>
+ 	<div id="container">
+ 		<div id="header">
+	 		<h1>Your Gold:</h1>
+	 		<h1 id="score">{{session["score"]}}</h1>
+	 		<a id="rstbtn" href="/reset"><button class="btn" >Reset</button></a>
+ 		</div>
+ 		<div id="gameBody">
+ 			<div class="earnGold">
+ 				<H3>Farm</H3>
+ 				<h4>Collect 10 to 20 golds</h4>
+ 				<form action="/process_money" method="post">
+ 					<input type="hidden" name="action" value="farm" />
+	 				<input class="btn" type="submit" value="Find Gold!" />
+ 				</form>
+ 			</div>
+ 			<div class="earnGold">
+ 				<H3>Cave</H3>
+ 				<h4>Collect 5 to 10 golds</h4>
+ 				<form action="/process_money" method="post">
+ 					<input type="hidden" name="action" value="cave" />
+	 				<input class="btn" type="submit" value="Find Gold!" />
+ 				</form>
+ 			</div>
+ 			<div class="earnGold">
+ 				<H3>House</H3>
+ 				<h4>Collect 2 to 5 golds</h4>
+ 				<form action="/process_money" method="post">
+ 					<input type="hidden" name="action" value="house" />
+	 				<input class="btn" type="submit" value="Find Gold!" />
+ 				</form>
+ 			</div>
+ 			<div class="earnGold">
+ 				<H3>Casino</H3>
+ 				<h4>Win or Lose 0 to 50 golds</h4>
+ 				<form action="/process_money" method="post">
+ 					<input type="hidden" name="action" value="casino" />
+	 				<input class="btn" type="submit" value="Find Gold!" />
+ 				</form>
+ 			</div> 			 			 			
+ 		</div>
+ 		<div id="gameText">
+ 			{% for text in session["text"]%}
+ 			{% if "Won" in text %}
+ 			<p class="green">{{text}}</p>
+ 			{% elif "Earned" in text %}
+ 			<p class="green">{{text}}</p> 			
+ 			{% else %}
+ 			<p class="red">{{text}}</p>
+ 			{% endif %}
+ 			{% endfor %}
+ 		</div>
+ 	</div>
+ </body>
+ </html>
